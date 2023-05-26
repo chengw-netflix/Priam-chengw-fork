@@ -64,6 +64,7 @@ public class BackupHelperImpl implements BackupHelper {
                 ImmutableList.builder();
         for (AbstractBackupPath bp : getBackupPaths(parent, type)) {
             logger.info("Backup file paths: " + Paths.get(bp.getBackupFile().getAbsolutePath()));
+            
             futures.add(fs.uploadAndDelete(bp, target, async));
         }
         return futures.build();
